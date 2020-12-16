@@ -2,18 +2,19 @@ let express = require("express");
 let bodyParser = require("body-parser");
 let app = express();
 const port = require("dotenv");
-// const server = require("http").createServer(app);
+const server = require("http").createServer(app);
 const MongoClient = require("mongodb").MongoClient;
-let apiRoutes = require("./api-routes");
-var database;
-// Configure bodyparser to handle post requests
 const cors = require("cors");
 app.use(bodyParser.json());
 app.use(cors());
 port.config();
+
 app.get("/", (req, res) => {
-  return { status: "Bem vindos a api de logs" };
+  res.status(200).json({ api: "Chat conectTv v4" });
 });
+
+var database;
+
 // Connect to Mongoose and set connection variable
 MongoClient.connect(
   "mongodb://conectedudemonstracao:0aHMcTOvR2Xu1kQpNoI9QHm7LB4qc7vsgQTRfsEBc9u4nT0fPnuq8v9UvSvDDUmwwifKi0Nt08rkBKOGNfaPkg==@conectedudemonstracao.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@conectedudemonstracao@&retrywrites=false",
@@ -39,4 +40,4 @@ app.post("/postlog", (req, res) => {
 // app.listen(3000, function () {
 //   console.log("Running RestHub on port " + port);
 // });
-app.listen(process.env.PORT);
+server.listen(process.env.PORT);
