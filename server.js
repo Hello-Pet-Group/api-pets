@@ -24,9 +24,8 @@ var port = process.env.PORT || 8080;
 
 // Send message for default URL
 app.get("/", (req, res) => {
-  res.status(200).json({ status: "Bem vindos a api de logs" });
+  return { status: "Bem vindos a api de logs" };
 });
-
 
 app.post("/postlog", (req, res) => {
   database
