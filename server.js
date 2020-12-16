@@ -1,6 +1,7 @@
 let express = require("express");
 let bodyParser = require("body-parser");
 let app = express();
+const server = require("http").createServer(app);
 const MongoClient = require("mongodb").MongoClient;
 let apiRoutes = require("./api-routes");
 var database;
@@ -23,7 +24,7 @@ var port = process.env.PORT || 8080;
 
 // Send message for default URL
 app.get("/", (req, res) =>
-  res.status(200).json({ status: "Bem vindo a api de logs" })
+  res.status(200).json({ status: "Bem vindos a api de logs" })
 );
 
 app.post("/postlog", (req, res) => {
@@ -34,6 +35,6 @@ app.post("/postlog", (req, res) => {
     .catch((err) => console.log(err));
   res.status(200).json({ status: "Cadastrado" });
 });
-app.listen(8080, function () {
+app.listen(3000, function () {
   console.log("Running RestHub on port " + port);
 });
