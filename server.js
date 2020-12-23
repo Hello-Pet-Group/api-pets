@@ -90,4 +90,4 @@ app.post("/postfaq", (req, res) => {
 // app.listen(3000, function () {
 //   console.log("Running RestHub on port " + port);
 // });
-server.listen(8080);
+server.listen(process.env.PORT);
