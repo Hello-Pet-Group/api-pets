@@ -81,7 +81,7 @@ app.get("/123123", (req, res) => {
 // });
 
 app.post("/postfaq", (req, res) => {
-  db.collection("faq")
+  db.collection("faq") 
     .insertOne(req.body)
     .then(() => {})
     .catch((err) => console.log(err));
