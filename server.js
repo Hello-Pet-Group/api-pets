@@ -18,7 +18,8 @@ async function connect() {
   if (global.db) return global.db;
 
   const conn = await MongoClient.connect(
-    "Ïmongodb://conectedudemonstracao:0aHMcTOvR2Xu1kQpNoI9QHm7LB4qc7vsgQTRfsEBc9u4nT0fPnuq8v9UvSvDDUmwwifKi0Nt08rkBKOGNfaPkg==@conectedudemonstracao.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@conectedudemonstracao@&retrywrites=false",
+    "mongodb://mongo-pet:nrcpzNx5AlNdrGd9OEAG3KvT7oIqwusmrtq7s7GMugSBX7Fu7PSwnwzeitCYFYPWTy7AVtzzHleLYbGa1rQtHQ==@mongo-pet.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@mongo-pet@retrywrites=false",
+
     {
       useUnifiedTopology: true,
     }
@@ -26,14 +27,14 @@ async function connect() {
 
   if (!conn) return new Error("Falha na conexão");
 
-  global.db = await conn.db("logsNiteroi");
+  global.db = await conn.db("petDb");
 
   return global.db;
 }
-app.get("/faq", async (req, res, next) => {
+app.get("/pets", async (req, res, next) => {
   try {
     const db = await connect();
-    res.json(await db.collection("faq").find().toArray());
+    res.json(await db.collection("pet").find().toArray());
   } catch (ex) {
     console.log(ex);
     res.status(400).json({ erro: `${ex}` });
@@ -44,7 +45,7 @@ app.post("/postlog", async (req, res, next) => {
   try {
     const db = await connect();
     db.collection("logs").insertOne(req.body);
-    res.json(await {status: 'Cadastrado'});
+    res.json(await { status: "Cadastrado" });
   } catch (ex) {
     console.log(ex);
     res.status(400).json({ erro: `${ex}` });
