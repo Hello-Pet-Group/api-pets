@@ -18,8 +18,7 @@ async function connect() {
   if (global.db) return global.db;
 
   const conn = await MongoClient.connect(
-    "mongodb://mongo-pet:nrcpzNx5AlNdrGd9OEAG3KvT7oIqwusmrtq7s7GMugSBX7Fu7PSwnwzeitCYFYPWTy7AVtzzHleLYbGa1rQtHQ==@mongo-pet.mongo.cosmos.azure.com:10255/?ssl=true&replicaSet=globaldb&maxIdleTimeMS=120000&appName=@mongo-pet@retrywrites=false",
-
+    "mongodb://admin:GLLnzs85263@node68927-env-7969828.jelastic.saveincloud.net:27017/",
     {
       useUnifiedTopology: true,
     }
